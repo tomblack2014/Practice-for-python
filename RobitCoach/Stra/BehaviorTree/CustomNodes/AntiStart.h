@@ -18,7 +18,6 @@
 #include "../CustomData.h"
 #include "../LeafData.h"
 
-//test
 
 namespace BehaviorTree {
 	
