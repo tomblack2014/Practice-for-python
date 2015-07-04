@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/Image">
+        <file>Config/L2RFullField.bmp</file>
+        <file>Config/R2LFullField.bmp</file>
+    </qresource>
+</RCC>

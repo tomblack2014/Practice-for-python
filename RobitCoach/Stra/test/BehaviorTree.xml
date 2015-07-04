@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BehaviorTrees>
+  <RobitBehaviorTree>
+    <Composite name="Selector">
+      <Composite name="Sequence">
+        <Leaf name="Condition_IsKick"/>
+        <Composite name="ParallelSelector">
+          <Decorator name="Inverter">
+            <Leaf name="Action_Kick_Assignment"/>
+          </Decorator>
+          <Leaf name="Action_Kick_KeepInPosition"/>
+        </Composite>
+      </Composite>
+      <Composite name="Sequence">
+        <Leaf name="Condition_IsStartPass"/>
+        <Composite name="ParallelSelector">
+          <Decorator name="Inverter">
+            <Leaf name="Action_StartPass_Assignment"/>
+          </Decorator>
+          <Leaf name="Action_StartPass"/>
+        </Composite>
+      </Composite>
+      <Composite name="Sequence">
+        <Leaf name="Condition_IsAntiStart"/>
+        <Composite name="ParallelSelector">
+          <Decorator name="Inverter">
+            <Leaf name="Action_AntiStart_Assignment"/>
+          </Decorator>
+          <Leaf name="Action_AntiStart"/>
+        </Composite>
+      </Composite>
+      <Composite name="Sequence">
+        <Leaf name="Condition_IsAuto"/>
+        <Composite name="ParallelSelector">
+          <Decorator name="Inverter">
+            <Leaf name="Action_Auto_Assignment"/>
+          </Decorator>
+          <Leaf name="Action_Auto_CatchBall"/>
+        </Composite>
+      </Composite>
+      <Composite name="Sequence">
+        <Leaf name="Condition_IsDefending"/>
+        <Composite name="ParallelSelector">
+          <Decorator name="Inverter">
+            <Leaf name="Action_Defend_Assignment"/>
+          </Decorator>
+          <Leaf name="Action_Defend_Use_Default_Plan"/>
+        </Composite>
+      </Composite>
+      <Composite name="Sequence">
+        <Leaf name="Condition_IsAttacking"/>
+        <Composite name="ParallelSelector">
+          <Decorator name="Inverter">
+            <Leaf name="Action_Attack_Assignment"/>
+          </Decorator>
+          <Leaf name="Action_Attack_Use_Default_Plan"/>
+        </Composite>
+      </Composite>
+      <Composite name="Sequence">
+        <Leaf name="Condition_IsPassing"/>
+        <Composite name="ParallelSelector">
+          <Decorator name="Inverter">
+            <Leaf name="Action_Pass_Assignment"/>
+          </Decorator>
+          <Leaf name="Action_Pass"/>
+        </Composite>
+      </Composite>
+      <Composite name="Sequence">
+        <Leaf name="Condition_IsStop"/>
+        <Leaf name="Action_AllStop"/>
+      </Composite>
+    </Composite>
+  </RobitBehaviorTree>
+</BehaviorTrees>
