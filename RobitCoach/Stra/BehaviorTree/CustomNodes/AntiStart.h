@@ -18,7 +18,6 @@
 #include "../CustomData.h"
 #include "../LeafData.h"
 
-
 namespace BehaviorTree {
 	
 	class Condition_IsAntiStart : public Condition 

@@ -18,6 +18,7 @@
 
 //! [3] 创建需要的数据的类型
 BehaviorTree::GameStatus gameStatus = BehaviorTree::GAME_STOP;
+
 BehaviorTree::Ball ball;
 std::vector<BehaviorTree::Agent> agents;
 std::vector<BehaviorTree::Enemy> enemies;
@@ -28,15 +29,27 @@ Ball *BallInfo;
 Obstacle *ObstInfo;
 CUDPDataHandling *extSender;
 TCPRefClient  *extRef;
+
+char memStatus = 'S';
+bool firstRun = true;
+
 void checkGameStatus()
 {
-    if (!extRef->hasStatusChanged())
-    {
-        return;
-    }
+
     bool isCyan = extRef->isSideCyan();
     char status = extRef->GetGameStatus();
-
+    if (!firstRun)
+    {
+        if (memStatus == status)
+        {
+            return;
+        }
+        else
+        {
+            memStatus = status;
+        }
+    }
+    firstRun = false;
     switch (status) {
     case MSLS_Stop:
         gameStatus = BehaviorTree::GAME_STOP;
@@ -380,6 +393,7 @@ DWORD WINAPI Tree(LPVOID pParam)
                 itemp >> ID;
                 //TODO:给ID发送STOP
                 extSender[ID].CtrlCmd(CTRL_STOP,0,0,0,0,0);
+                //printf("No.%d  command:STOP\n");
                 //std::cout << "STOP" << ' ' << ID << std::endl;
             }
                     else if (str == "MOVETO"){
@@ -436,6 +450,8 @@ void RobitCoachInitialize(Agent *iAgentInfo, Ball *iBallInfo,
     ObstInfo  = iObstInfo;
     extSender = inSender;
     extRef    = ref;
+    memStatus = 'S';
+    firstRun = true;
 }
 
 int main(int argc, char *argv[])

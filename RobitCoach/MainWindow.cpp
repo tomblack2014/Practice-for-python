@@ -335,5 +335,30 @@ void MainWindow::on_actionStop_One_Agent_triggered()
 
 void MainWindow::on_pushButton_FreeKick_clicked()
 {
+    m_Referee->ManualSetStatus('F');
+}
+
+void MainWindow::on_pushButton_Start_clicked()
+{
     m_Referee->ManualSetStatus('s');
+}
+
+void MainWindow::on_pushButton_CornerKick_clicked()
+{
+    m_Referee->ManualSetStatus('C');
+}
+
+void MainWindow::on_pushButton_GoalKick_clicked()
+{
+    m_Referee->ManualSetStatus('G');
+}
+
+void MainWindow::on_pushButton_Throwin_clicked()
+{
+    m_Referee->ManualSetStatus('T');
+}
+
+void MainWindow::on_pushButton_Dropball_clicked()
+{
+    m_Referee->ManualSetStatus('N');
 }

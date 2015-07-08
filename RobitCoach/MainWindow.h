@@ -67,6 +67,16 @@ private slots:
 
     void on_pushButton_FreeKick_clicked();
 
+    void on_pushButton_Start_clicked();
+
+    void on_pushButton_CornerKick_clicked();
+
+    void on_pushButton_GoalKick_clicked();
+
+    void on_pushButton_Throwin_clicked();
+
+    void on_pushButton_Dropball_clicked();
+
 private:
     Ui::MainWindow *ui;
 
