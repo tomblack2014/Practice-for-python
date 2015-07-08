@@ -70,7 +70,7 @@ namespace BehaviorTree {
 			const InputData & input = inputRef.GetRealData<InputData>();
 			OutputData & output = outputRef.GetRealData<OutputData>();
 
-			const std::vector<Agent> & agents = input.GetAgents();
+            //const std::vector<Agent> & agents = input.GetAgents();
 
 			/* [1]检查状态是否被外界改变 */
 			if (input.GetGameStatus() != GAME_ATTACK) {
@@ -138,7 +138,7 @@ namespace BehaviorTree {
 			
 			//最初对角色的分配
 			const std::vector<Agent> & agents = input.GetAgents();
-			const int n = agents.size();
+            const int n = static_cast<int> (agents.size());
 			auto destination = new Vec2D<float>[n];
 			auto score = new int[n * n];
 
@@ -179,7 +179,7 @@ namespace BehaviorTree {
 		     默认的进攻方式在其它进攻方式都不满足的时候使用，所以希望能万金油一点，不需要针对性*/
 
 			const std::vector<Agent> & agents = input.GetAgents();
-			const int n = agents.size();
+            const int n = static_cast<int>(agents.size());
 			auto destination = new Vec2D<float>[n];
 
 			for (int i = 0; i < n; i++)

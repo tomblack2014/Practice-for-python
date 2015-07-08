@@ -153,7 +153,7 @@ namespace BehaviorTree {
 			
 			/* 状态没有改变, 开始维护任务分配 */
 			const std::vector<Agent> & agents = input.GetAgents();
-			const int n = agents.size();
+            const int n = static_cast<int>(agents.size());
 			auto score = new int [n * n];
 
 			/* 获取对应状态的任务分配评估函数 */

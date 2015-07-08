@@ -164,7 +164,7 @@ namespace BehaviorTree {
 			OutputData & output = outputRef.GetRealData<OutputData>();
 			
 			const std::vector<Agent> & agents = input.GetAgents();
-			int n = agents.size();
+            int n = static_cast<int>(agents.size());
 
 			if (!_IsPassing) {
 				_IsPassing = true;
@@ -248,7 +248,7 @@ namespace BehaviorTree {
 		{
 			const InputData & input = inputRef.GetRealData<InputData>();
 			const std::vector<Enemy> & enermys = input.GetEnemies();
-			const int n = enermys.size();
+            const int n = static_cast<int>(enermys.size());
 
 			/*暂时假定一定能找到传球角度*/
 			double angle;

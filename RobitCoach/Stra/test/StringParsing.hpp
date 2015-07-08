@@ -32,7 +32,7 @@ public:
 private:
 	void Execute(){
 		//TODO:解析字符串
-		int length = m_String.length(),mode = 0;
+                int length = static_cast<int>(m_String.length()),mode = 0;
 		std::string temp = "";
 		CUDPDataHandling datahandler;
 
@@ -71,7 +71,7 @@ private:
 	}
 
 	int StringToInt(std::string temp){
-		int length = temp.length();
+                int length =  static_cast<int>(temp.length());
 		int ret = 0;
 
 		for (int i = 0; i < length; i++){

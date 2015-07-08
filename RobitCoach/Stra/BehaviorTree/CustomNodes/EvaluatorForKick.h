@@ -237,7 +237,7 @@ namespace BehaviorTree {
 		{
 			if (_HasCalculated[index] == false)
 			{
-				int tempWay = 1;
+                //int tempWay = 1;
 				if (index == 0)
 					_Target[index] = input.GetBall()._Loacion + Vec2D<float>(_TargetAngle[index], -_TargetLocation[index].Length(), true);
 				else if (index == 1)
@@ -257,7 +257,7 @@ namespace BehaviorTree {
 			/* 这里机器角色号等于任务编号 */
 			auto ret = Vec2D<float>(0, 0);
 			double angle = 0;
-			int tempWay = 1;
+//			int tempWay = 1;
 			if (index == 1)
 				angle = Calculation::PI;
 			//接球角度变换
@@ -332,7 +332,7 @@ namespace BehaviorTree {
 			}
 
 			/*0,1号的角度根据球的位置可能有两种相反的情况*/
-			double sign = (input.GetBall()._Loacion.GetY() > 0) ? -1 : 1;
+//			double sign = (input.GetBall()._Loacion.GetY() > 0) ? -1 : 1;
 
 			/* 处理结果是机器应该有的[位置]和[弧度] */
 			return std::make_pair(ret.AngleTo(input.GetBall()._Loacion), ret);

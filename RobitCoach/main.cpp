@@ -340,7 +340,7 @@ void load_info(BehaviorTree::Ball &ball,
 
 DWORD WINAPI Tree(LPVOID pParam)
 {
-    int cnt = 0;
+    //int cnt = 0;
     //! [2] 从XML文件导入行为树
     BehaviorTree::Node * root = nullptr;
     try
@@ -358,7 +358,7 @@ DWORD WINAPI Tree(LPVOID pParam)
     //! [2] end
     BehaviorTree::InputData input(gameStatus, ball, agents, enemies);
     BehaviorTree::OutputData output(gameStatus, agents, cmd);
-    StringParsing stringparser;
+    //StringParsing stringparser;
    // ! [4] 主循环
     int iii = 0;
     while (iii<1) {
@@ -378,7 +378,7 @@ DWORD WINAPI Tree(LPVOID pParam)
 
         std::istringstream itemp(m_String);
 
-        int ID = 0, x = 0, y = 0, mode = 0;;
+        int ID = 0, x = 0, y = 0;
         double angle = 0;
 
         while (itemp >> str){
@@ -386,27 +386,27 @@ DWORD WINAPI Tree(LPVOID pParam)
             if (str == "ATTACK") {
                 itemp >> ID;
                 //TODO:给ID发送ATTACK
-                extSender[ID].CtrlCmd(CTRL_ATTACK,BallInfo->GetX(),BallInfo->GetY(),0,0,0);
+                extSender[ID].CtrlCmd(CTRL_ATTACK,BallInfo->GetX(),BallInfo->GetY(),0,0);
                 //std::cout << "ATTACK" << ' ' << ID << std::endl;
             }
             else if (str == "STOP"){
                 itemp >> ID;
                 //TODO:给ID发送STOP
-                extSender[ID].CtrlCmd(CTRL_STOP,0,0,0,0,0);
+                extSender[ID].CtrlCmd(CTRL_STOP,0,0,0,0);
                 //printf("No.%d  command:STOP\n");
                 //std::cout << "STOP" << ' ' << ID << std::endl;
             }
                     else if (str == "MOVETO"){
                         itemp >> ID >> x >> y;
                         //TODO:给ID发送MOVETO(x,y)
-                        extSender[ID].MoveCmd(x,y,0,0,1);
+                        extSender[ID].MoveCmd(x,y,0,0);
                         //std::cout << "MOVETO" << ' ' << ID << ' ' << x << ' ' << y << std::endl;
                     }
                     else if (str == "PASSMOVE"){
                         itemp >> ID >> x >> y >> angle;
                         //TODO:给ID发送PASSMOVE(x,y,angle)
                         //extSender[ID].SetTarget("127.0.0.1",20091);
-                        extSender[ID].MoveCmd(x,y,angle,0,1);
+                        extSender[ID].MoveCmd(x,y,angle,0);
                         //printf("dfsdfsdfsdfsd\n");
                         //std::cout << "PASSMOVE" << ' ' << ID << ' ' << x << ' ' << y << ' ' << angle << std::endl;
                     }
@@ -439,6 +439,8 @@ DWORD WINAPI Tree(LPVOID pParam)
         Sleep(333);
         system("cls");*/
    }
+
+    return 1;
 }
 
 void RobitCoachInitialize(Agent *iAgentInfo, Ball *iBallInfo,
@@ -458,7 +460,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    int status;
+    //int status;
     // Define Agent
     Agent    *ExtAgent;
     ExtAgent   = new Agent[AG_NUM+1];

@@ -9,11 +9,11 @@ CUDPDataHandling::CUDPDataHandling(Agent *inList)
 		msgCnt[i] = 0;
 	}
 }
-void CUDPDataHandling::Received(unsigned char *inbuf, int inlen, SOCKADDR *inpSock){
+void CUDPDataHandling::Received(unsigned char *inbuf, SOCKADDR *inpSock){
 
     unsigned char* pch;
     pch = (unsigned char*)inpSock->sa_data;
-	WORD iPort = ntohs(*(WORD*)pch);
+//	WORD iPort = ntohs(*(WORD*)pch);
     inIP[0] = pch[2]; inIP[1] = pch[3]; inIP[2] = pch[4]; inIP[3] = pch[5];
     m_curIP[0] = (int)pch[2];
     m_curIP[1] = (int)pch[3];
@@ -57,13 +57,13 @@ void CUDPDataHandling::BufGetVaule(unsigned char* inBuf){
 	case MSL_PREDICTBALL:
 
 		if (m_bFoundBall == true){
-			SetPreball(inBuf[3], m_Piece2int(&inBuf[5]), m_Piece2int(&inBuf[7]));
+            SetPreball(inBuf[3], (float)m_Piece2int(&inBuf[5]), (float)m_Piece2int(&inBuf[7]));
 		}
 		break;
-		//
+        //
 	case MSL_DEBUG:{//It has no use[syc]
 		int hball;
-		int PlayerX;
+//		int PlayerX;
 		int PlayerY;
 		int TargetX;
 		int TargetY;
@@ -298,7 +298,7 @@ void CUDPDataHandling::CatchCmd_Normal(int inFromX, int inFromY)
 }
 
 //CtrlCmd
-void CUDPDataHandling::CtrlCmd(int inCtrl, int inReBx, int inReBy, int inAng, int inDist, bool inbField)
+void CUDPDataHandling::CtrlCmd(int inCtrl, int inReBx, int inReBy, int inAng, int inDist)
 {
 	m_sendbuf[2] = 15;
 	m_sendbuf[4] = MSL_CMD;
@@ -314,14 +314,14 @@ void CUDPDataHandling::CtrlCmd(int inCtrl, int inReBx, int inReBy, int inAng, in
 }
 
 //Predictball
-void CUDPDataHandling::Predictball(int inCtrl, int inReBx, int inReBy, float jiao, float chang){
+void CUDPDataHandling::Predictball(int inCtrl, int inReBx, int inReBy, float angle, float len){
 	m_sendbuf[2] = 15;
 	m_sendbuf[4] = MSL_CMD;
 	m_Split2Bytes(&(m_sendbuf[5]), inReBx);		//rebx
 	m_Split2Bytes(&(m_sendbuf[7]), inReBy);		//reby	
 	m_sendbuf[9] = (unsigned char)inCtrl;		//ctrl
-	m_Split2Bytes(&(m_sendbuf[10]), jiao * 100);		//angle
-	m_Split2Bytes(&(m_sendbuf[12]), chang * 100);		// dist
+    m_Split2Bytes(&(m_sendbuf[10]), (unsigned int)(angle * 100));		//angle
+    m_Split2Bytes(&(m_sendbuf[12]), (unsigned int)(len * 100));		// dist
 
 	m_sendbuf[14] = m_calsum(m_sendbuf, 14);		//sum
 	Send((char*)m_sendbuf, 15);
@@ -372,7 +372,7 @@ void CUDPDataHandling::CtrlMidPassCmd(int ctrl, int mid_pass_x, int mid_pass_y, 
 }
 
 
-void CUDPDataHandling::FollowPosition(int inCtrl, int goalx, int goaly, int angle, int dist){
+void CUDPDataHandling::FollowPosition(int goalx, int goaly){
 
 	m_sendbuf[2] = 18;
 	m_sendbuf[4] = MSL_CMD;
@@ -395,7 +395,7 @@ void CUDPDataHandling::FollowPosition(int inCtrl, int goalx, int goaly, int angl
 	Send((char*)m_sendbuf, 18);
 }
 
-void CUDPDataHandling::MoveTo(int inTargetx, int inTargety, int inTargetAng, int inDist, bool inbField, int inSpd)
+void CUDPDataHandling::MoveTo(int inTargetx, int inTargety, int inTargetAng, int inDist, int inSpd)
 {
 	//make inAngle between 0 and 360
 	while (inTargetAng < 0)
@@ -425,7 +425,7 @@ void CUDPDataHandling::MoveTo(int inTargetx, int inTargety, int inTargetAng, int
 	Send((char*)m_sendbuf, 18);
 }
 
-void CUDPDataHandling::MoveCmd(int inTargetx, int inTargety, int inTargetAng, int inDist, bool inbField)
+void CUDPDataHandling::MoveCmd(int inTargetx, int inTargety, int inTargetAng, int inDist)
 {
 	//make inAngle between 0 and 360
 	while (inTargetAng < 0)
@@ -499,7 +499,7 @@ void CUDPDataHandling::m_Split2Bytes(unsigned char *inTarg, unsigned int inSrc)
 
 void CUDPDataHandling::AChangeStatus(UINT inCtrlCode, double inAngle, int inDist)
 {
-	CtrlCmd(inCtrlCode, trueball_x, trueball_y, (int)inAngle, inDist, inbField);
+    CtrlCmd(inCtrlCode, trueball_x, trueball_y, (int)inAngle, inDist);
 }
 
 CUDPDataHandling::CUDPDataHandling(){

@@ -55,7 +55,7 @@ openFile(const std::string & filePath)
 		case' ':
 			break;
 		default:
-			int indexOfEqual = line.find_first_of('=');
+            int indexOfEqual = static_cast<int>(line.find_first_of('='));
 			if (std::string::npos == indexOfEqual)
 				break;
 			std::string key = line.substr(0, indexOfEqual);

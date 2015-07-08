@@ -22,7 +22,7 @@ public:
 	BOOL Send(char *inTarIP, int inPort, char *inbuf, int inLen);                   //send inbuf to the aim IP and port
 	BOOL Listen(int inPort);                                                        //Set your port and get ready to receive message from the Agent
 	static DWORD WINAPI UDPReceiveThread(LPVOID pParam);                            //Begin a new thread to receive message from the Agent
-	virtual void Received(unsigned char *inbuf, int inlen, SOCKADDR* inpSock);      //Start to deal with the message after receiving it from the Agent 
+    virtual void Received(unsigned char *inbuf, SOCKADDR* inpSock);      //Start to deal with the message after receiving it from the Agent
 	
 	SOCKET m_serverskt;                       //MSLCoach's address
 

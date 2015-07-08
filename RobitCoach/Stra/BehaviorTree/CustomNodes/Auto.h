@@ -94,7 +94,7 @@ namespace BehaviorTree {
 
 			int attacker = 0, attackerDis = INT_MAX;
 			const auto & agents = input.GetAgents();
-			for (int i = 0, n = agents.size(); i < n; i++) {
+            for (int i = 0, n = static_cast<int>(agents.size()); i < n; i++) {
 				int dis = (int)agents[i]._Loacion.Distance(ballLocation);
 				if (attackerDis > dis) {
 					attackerDis = dis;
@@ -106,7 +106,7 @@ namespace BehaviorTree {
 			
 			int competitor = 0, competitorDis = INT_MAX;
 			const auto & enemys = input.GetEnemies();
-			for (int i = 0, n = enemys.size(); i < n; i++) {
+            for (int i = 0, n = static_cast<int>(enemys.size()); i < n; i++) {
 				int dis = (int)enemys[i]._Loacion.Distance(ballLocation);
 				if (competitorDis > dis) {
 					competitorDis = dis;

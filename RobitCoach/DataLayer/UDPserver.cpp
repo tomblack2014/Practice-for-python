@@ -33,7 +33,7 @@ DWORD WINAPI CUDPServer::UDPReceiveThread(LPVOID pParam)
 	while (pudp->m_serverskt != INVALID_SOCKET){
 		reclen = recvfrom((pudp->m_serverskt), buffer, UPUDPBUFLEN, 0, (SOCKADDR*)&linkAdr, &len);
 		if (reclen != SOCKET_ERROR){
-			pudp->Received((unsigned char*)buffer, reclen, (SOCKADDR*)&linkAdr);
+            pudp->Received((unsigned char*)buffer, (SOCKADDR*)&linkAdr);
 		}
 	}
 
@@ -176,7 +176,7 @@ void CUDPServer::Close()
 	}
 }
 
-void CUDPServer::Received(unsigned char *inbuf, int inlen, SOCKADDR* inpSock){
+void CUDPServer::Received(unsigned char *inbuf, SOCKADDR* inpSock){
     unsigned char* pch = (unsigned char*)inpSock->sa_data;
 	WORD iPort = ntohs(*(WORD*)pch);
 }

@@ -219,7 +219,7 @@ void MainWindow::on_pushButton_ConnectREF_clicked()
 
 void MainWindow::on_label_FieldMap_clickMove(int x, int y, int ID)
 {
-    m_Sender[ID].MoveCmd(x,y,0,0,false);
+    m_Sender[ID].MoveCmd(x,y,0,0);
 }
 
 void MainWindow::on_actionEmergency_Stop_triggered()
@@ -227,7 +227,7 @@ void MainWindow::on_actionEmergency_Stop_triggered()
     m_Referee->ManualSetStatus('S');
     for (int i = 1; i <= AG_NUM; i++)
     {
-       m_Sender[i].CtrlCmd(CTRL_STOP,0,0,0,0,false);
+       m_Sender[i].CtrlCmd(CTRL_STOP,0,0,0,0);
     }
     ui->label_FieldMap->eraseAll();
     print("All STOP!!!!!!");
@@ -291,7 +291,7 @@ void MainWindow::fieldInfoElimination()
 void MainWindow::on_label_FieldMap_stopAction(int ID)
 {
     //select an agent and make it stop
-    m_Sender[ID].CtrlCmd(CTRL_STOP,0,0,0,0,false);
+    m_Sender[ID].CtrlCmd(CTRL_STOP,0,0,0,0);
 
 }
 
@@ -300,7 +300,7 @@ void MainWindow::on_label_FieldMap_shootBall(int ID)
     //select an agent and make it do attack action
     //!!!!!!!!!!ATTENTION!!!!!!!!!!!!!!!!
     /// parameter inbField stands for the attack direction , it remains undesigned
-    m_Sender[ID].CtrlCmd(CTRL_ATTACK,1800,600,0,0,false);
+    m_Sender[ID].CtrlCmd(CTRL_ATTACK,1800,600,0,0);
 }
 
 void MainWindow::on_pushButton_KickOff_clicked()

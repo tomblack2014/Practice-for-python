@@ -21,7 +21,7 @@ public:
 	void SetPreball(unsigned char ID, float ang, float len);
 	void BufGetVaule(unsigned char* inbuf);
 	void BufJudgement(unsigned char* inbuf);
-	void Received(unsigned char *inbuf, int inlen, SOCKADDR* inpSock);
+    void Received(unsigned char *inbuf, SOCKADDR* inpSock);
 private:
 	void ClearObstBuf(int inID);
 	unsigned char m_calsum(unsigned char *inBuf, int inlen);
@@ -53,13 +53,13 @@ public:
 	void CatchCmd_Normal(int inFromX, int inFromY);
 	void PassCmd(int inTargX, int inTargY);
 	void PassCmd_Normal(int inTargX, int inTargY);
-	void CtrlCmd(int inCtrl, int inReBx, int inReBy, int inAng, int inDist, bool inbField);
+    void CtrlCmd(int inCtrl, int inReBx, int inReBy, int inAng, int inDist);
 	void Predictball(int inCtrl, int inReBx, int inReBy, float jiao, float chang);
 	void DefCmd(int inAngle, int inDist);
 	void CtrlMidPassCmd(int ctrl, int mid_pass_x, int mid_pass_y, int mid_pass_believe, int mid_pass_jiao);
-	void FollowPosition(int inCtrl, int goalx, int goaly, int angle, int dist);
-	void MoveTo(int inTargetx, int inTargety, int inTargetAng, int inDist, bool inbField, int inSpd);
-	void MoveCmd(int inTargetx, int inTargety, int inTargetAng, int inDist, bool inbField);
+    void FollowPosition(int goalx, int goaly);
+    void MoveTo(int inTargetx, int inTargety, int inTargetAng, int inDist, int inSpd);
+    void MoveCmd(int inTargetx, int inTargety, int inTargetAng, int inDist);
 	void SendWithInitPos(BYTE *inBuf, int inTail);
 
 protected:

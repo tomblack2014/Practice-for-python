@@ -98,8 +98,8 @@ namespace BehaviorTree {
 		virtual NodeStatus OnRunning
 			(const BehaviorTreeInput& inputRef, BehaviorTreeOutput& outputRef) override
 		{
-			const InputData & input = inputRef.GetRealData<InputData>();
-			OutputData & output = outputRef.GetRealData<OutputData>();
+            //const InputData & input = inputRef.GetRealData<InputData>();
+            //OutputData & output = outputRef.GetRealData<OutputData>();
 			
 			/* do nothing */
 
